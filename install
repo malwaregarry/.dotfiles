@@ -1,0 +1,6 @@
+#! /usr/bin/bash
+folders=("zsh" "hyprland")
+for folder in "${folders[@]}"; do
+  echo stowing $folder
+  stow -R $folder
+done
