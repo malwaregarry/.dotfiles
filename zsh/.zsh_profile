@@ -1,0 +1,14 @@
+export DOTFILES=$HOME/.dotfiles
+
+addToPathFront() {
+    if [[ "$PATH" != *"$1"* ]]; then
+        export PATH=$1:$PATH
+    fi
+}
+
+addToPathFront $HOME/.local/scripts
+addToPathFront $HOME/.local/go/bin
+addToPathFront $HOME/go/bin
+
+# binds
+bindkey -s ^f "tmux-sessionizer\n"
