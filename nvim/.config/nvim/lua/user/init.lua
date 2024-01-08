@@ -299,10 +299,10 @@ require('nvim-treesitter.configs').setup {
   incremental_selection = {
     enable = true,
     keymaps = {
-      init_selection = '<leader>h',
-      node_incremental = '<c-h>',
+      init_selection = '<leader>ts',
+      node_incremental = '<leader>ti',
       scope_incremental = '<c-space>',
-      node_decremental = '<M-h>',
+      node_decremental = '<leader>td',
     },
   },
   textobjects = {

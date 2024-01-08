@@ -1,10 +1,17 @@
 export DOTFILES=$HOME/.dotfiles
 
+ZSH_THEME="gruvbox"
+SOLARIZED_THEME="light"
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=180'
+
 addToPathFront() {
     if [[ "$PATH" != *"$1"* ]]; then
         export PATH=$1:$PATH
     fi
 }
+
+source /usr/share/fzf/key-bindings.zsh
+source /usr/share/fzf/completion.zsh
 
 addToPathFront $HOME/.local/scripts
 addToPathFront $HOME/.local/go/bin
@@ -12,3 +19,10 @@ addToPathFront $HOME/go/bin
 
 # binds
 bindkey -s ^f "tmux-sessionizer\n"
+
+#alias
+alias vim="nvim"
+
+# opam configuration
+[[ ! -r /home/mw/.opam/opam-init/init.zsh ]] || source /home/mw/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
+eval $(opam env)
