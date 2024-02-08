@@ -1,5 +1,5 @@
 #! /usr/bin/bash
-folders=("zsh" "hyprland")
+folders=("zsh" "hyprland" "nvim" "waybar" "tmux")
 for folder in "${folders[@]}"; do
   echo stowing $folder
   stow -R $folder

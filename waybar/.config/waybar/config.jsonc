@@ -1,0 +1,190 @@
+{
+    "layer": "top",
+    "position": "top",
+    "mod": "dock",
+    "exclusive": true,
+    "passthrough": false,
+    "gtk-layer-shell": true,
+    "height": 24,
+    "modules-left": ["hyprland/workspaces","hyprland/window"],
+    "modules-center": ["clock", "custom/notification"],
+    "modules-right": ["custom/stopwatch", "custom/break", "temperature","pulseaudio","pulseaudio#microphone", "tray", "custom/updates"],
+    "margin-bottom" : 0,
+
+    "hyprland/window": {
+        "format": "{}"
+    },
+
+    "custom/lock_screen": {
+        "format": "",
+        "on-click": "sh -c '(sleep 0.5s; gtklock -s -H)' & disown",
+        "tooltip": false
+    },
+
+    "custom/power_btn": {
+        "format": "",
+        "on-click": "sh -c '(sleep 0.5s; wlogout --protocol layer-shell)' & disown",
+        "tooltip": false
+    },
+
+    "cpu": {
+        "interval": 10,
+        "format": " {usage}%",
+        "max-length": 10
+    },
+
+    "disk": {
+        "interval": 30,
+        "format": "󰋊 {percentage_used}%",
+        "path": "/",
+        "tooltip": true,
+        "tooltip-format": "HDD - {used} used out of {total} on {path} ({percentage_used}%)"
+    },
+
+    "memory": {
+        "interval": 30,
+        "format": " {}%",
+        "max-length": 10,
+        "tooltip": true,
+        "tooltip-format": "Memory - {used:0.1f}GB used"
+    },
+
+    "custom/updates": {
+        "format": "{}",
+        "exec": "~/.config/HyprV/waybar/scripts/update-sys",
+        "on-click": "~/.config/HyprV/waybar/scripts/update-sys update",
+        "interval": 300,
+        "tooltip": true
+    },
+
+    "custom/stopwatch": {
+        "format": "{}",
+        "exec": "~/.config/waybar/stopwatch/get-elapsed-time.py /tmp/.primary-stopwatch",
+        "on-click": "~/.config/waybar/stopwatch/toggle-start.py /tmp/.primary-stopwatch",
+        "on-click-right": "rm -f /tmp/.primary-stopwatch",
+        "interval": 1,
+        "tooltip": true
+    },
+
+    "custom/break": {
+        "format": "B: {}",
+        "exec": "~/.config/waybar/stopwatch/get-elapsed-time.py /tmp/.break-stopwatch",
+        "on-click": "~/.config/waybar/stopwatch/toggle-start.py /tmp/.break-stopwatch",
+        "on-click-right": "rm -f /tmp/.break-stopwatch",
+        "interval": 1,
+        "tooltip": true
+    },
+
+    "hyprland/workspaces": {
+        "format": "{name}",
+        "all-outputs": true,
+        "active-only": true,
+        "on-click": "activate",
+        "show-special": true
+    },
+
+   "custom/weather": {
+        //shows the current weather and forecast
+        "tooltip" : true,
+        "format" : "{}",
+        "interval" : 900,
+        "exec" : "~/.config/HyprV/waybar/scripts/waybar-wttr.py",
+        "return-type" : "json"
+    },
+
+    "tray": {
+        "icon-size": 18,
+        "spacing": 8
+    },
+
+    "clock": {
+        "format": "{:%a, %e %b    %H:%M   }",
+        "tooltip": true,
+        "tooltip-format": "{: %A, %e %B %Y}"
+    },
+
+    "backlight": {
+        "device": "intel_backlight",
+        "format": "{icon} {percent}%",
+        "format-icons": ["󰃞", "󰃟", "󰃠"],
+        "on-scroll-up": "~/.config/HyprV/waybar/scripts/brightness --inc",
+        "on-scroll-down": "~/.config/HyprV/waybar/scripts/brightness --dec",
+        "min-length": 6
+    },
+
+    "battery": {
+        "states": {
+            "good": 95,
+            "warning": 30,
+            "critical": 20
+        },
+        "format": "{icon} {capacity}%",
+        "format-charging": " {capacity}%",
+        "format-plugged": " {capacity}%",
+        "format-alt": "{time} {icon}",
+        "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
+    },
+
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-muted": "",
+        "on-click": "~/.config/HyprV/waybar/scripts/volume --toggle",
+        "on-click-right": "pavucontrol",
+        "on-scroll-up": "~/.config/HyprV/waybar/scripts/volume --inc",
+        "on-scroll-down": "~/.config/HyprV/waybar/scripts/volume --dec",
+        "scroll-step": 5,
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        }
+    },
+
+    "pulseaudio#microphone": {
+        "format": "{format_source} {volume}%",
+        "format-source": "",
+        "format-source-muted": "",
+        "on-click": "~/.config/HyprV/waybar/scripts/volume --toggle-mic",
+        "on-click-right": "pavucontrol",
+        "on-scroll-up": "~/.config/HyprV/waybar/scripts/volume --mic-inc",
+        "on-scroll-down": "~/.config/HyprV/waybar/scripts/volume --mic-dec",
+        "scroll-step": 5
+    },
+    
+    "temperature": {
+        "thermal-zone": 2,
+        "format": " {temperatureC}°C",
+        "critical-threshold": 70,
+        "format-critical": " {temperatureC}°C"
+    },
+    "custom/notification": {
+        "tooltip": false,
+        "format": "{icon}",
+        "format-icons": {
+          "notification": "󰂚<span foreground='red'><sup></sup></span>",
+          "none": "󰂚",
+          "dnd-notification": "󰂛<span foreground='red'><sup></sup></span>",
+          "dnd-none": "󰂛",
+          "inhibited-notification": "󰂚<span foreground='red'><sup></sup></span>",
+          "inhibited-none": "󰂚",
+          "dnd-inhibited-notification": "󰂛<span foreground='red'><sup></sup></span>",
+          "dnd-inhibited-none": "󰂛"
+        },
+        "return-type": "json",
+        "exec-if": "which swaync-client",
+        "exec": "sleep 0.2 ; swaync-client -swb",
+        "on-click": "sleep 0.2 ; swaync-client -t -sw",
+        "on-click-right": "sleep 0.2 ; swaync-client -d -sw",
+        "escape": true
+    },
+    "custom/padding": {
+        "tooltip": false,
+        "format": "                      "
+    }
+    
+
+}
