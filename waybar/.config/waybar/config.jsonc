@@ -12,7 +12,8 @@
     "margin-bottom" : 0,
 
     "hyprland/window": {
-        "format": "{}"
+        "format": "{}",
+        "separate-outputs": true
     },
 
     "custom/lock_screen": {
@@ -80,7 +81,6 @@
         "all-outputs": true,
         "active-only": true,
         "on-click": "activate",
-        "show-special": true
     },
 
    "custom/weather": {

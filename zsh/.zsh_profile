@@ -22,7 +22,3 @@ bindkey -s ^f "tmux-sessionizer\n"
 
 #alias
 alias vim="nvim"
-
-# opam configuration
-[[ ! -r /home/mw/.opam/opam-init/init.zsh ]] || source /home/mw/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
-eval $(opam env)
